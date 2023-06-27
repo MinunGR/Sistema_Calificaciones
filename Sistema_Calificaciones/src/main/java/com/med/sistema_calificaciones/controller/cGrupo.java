@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
 
 /**
  *
- * @author usuario1
+ * @author Fernando.Barraza
  */
 public class cGrupo {
 

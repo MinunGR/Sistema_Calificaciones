@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
  *
  * @author RomanMendoza
  */
-public class cMaterias {
+public class cMateria {
 
     private Materia partesMateria;
     private static List<Materia> materia = new ArrayList<>();

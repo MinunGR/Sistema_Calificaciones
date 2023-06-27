@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author gabo
  */
-public class cAlumnos {
+public class cAlumno {
 
     private static final List<Alumno> listaAlumnos = new ArrayList<>();
 
