@@ -7,7 +7,7 @@ package com.med.sistema_calificaciones.model;
 
 /**
  *
- * @author usuario1
+ * @author Fernando.Barraza
  */
 public class GrupoAlumno {
 

@@ -11,24 +11,15 @@ package com.med.sistema_calificaciones.model;
  */
 public class Calificacion {
 
-    private Integer identificador;
     private Double calificacion;
     private GrupoAlumno grupoAlumno;
+    private Ponderacion ponderacion;
 
     public Calificacion() {
     }
 
-    public Calificacion(Integer identificador, Double calificacion) {
-        this.identificador = identificador;
+    public Calificacion(Double calificacion) {
         this.calificacion = calificacion;
-    }
-
-    public Integer getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(Integer identificador) {
-        this.identificador = identificador;
     }
 
     public Double getCalificacion() {
@@ -47,11 +38,20 @@ public class Calificacion {
         this.grupoAlumno = grupoAlumno;
     }
 
+    public Ponderacion getPonderacion() {
+        return ponderacion;
+    }
+
+    public void setPonderacion(Ponderacion ponderacion) {
+        this.ponderacion = ponderacion;
+    }
+
     @Override
     public String toString() {
-        return "Calificacion{" + "identificador=" + identificador + ", "
+        return "Calificacion{"
                 + "calificacion=" + calificacion + ", "
-                + "grupoAlumno=" + grupoAlumno.toString() + '}';
+                + "grupoAlumno=" + grupoAlumno.toString()
+                + ", ponderacion=" + ponderacion.toString() + '}';
     }
 
 }
