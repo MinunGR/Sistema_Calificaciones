@@ -13,7 +13,24 @@ import javax.annotation.PostConstruct;
 public class cMateria {
 
     private Materia partesMateria;
-    private static List<Materia> materia = new ArrayList<>();
+    private List<Materia> listMateria = new ArrayList<>();
+    private Scanner entrada;
+
+    public Materia getPartesMateria() {
+        return partesMateria;
+    }
+
+    public void setPartesMateria(Materia partesMateria) {
+        this.partesMateria = partesMateria;
+    }
+
+    public List<Materia> getListMateria() {
+        return listMateria;
+    }
+
+    public void setListMateria(List<Materia> listMateria) {
+        this.listMateria = listMateria;
+    }
 
     @PostConstruct
     public void init() {
@@ -46,75 +63,93 @@ public class cMateria {
         }
     }
 
-    public void registroMateria() {
-        Scanner entrada = new Scanner(System.in);
-
-        printer("Registro de Materia: ");
-        printer("Por favor,introduzca el nombre de la materia aregistrar: ");
-        partesMateria.setNombreMateria(entrada.nextLine());
-        printer("Ahora, ingrese cual será el código de la materia a registrar: ");
-        partesMateria.setCodigoMateria(entrada.nextLine());
-        printer("Dime el año en que se debería cursar esta materia: ");
-        partesMateria.setCicloMateria(entrada.nextInt());
-
-        printer("Nueva Materia Ingresada.");
-        printer("Información:");
-        printer("Nombre de Materia: " + partesMateria.getNombreMateria());
-        printer("Código de Materia: " + partesMateria.getCodigoMateria());
-        printer("Ciclo en que se cursará la Materia: " + partesMateria.getCicloMateria());
-    }
-
-    public void actualizarMateria() {
-        Scanner entrada = new Scanner(System.in);
-
-        printer("Actualización de Materia: ");
-        printer("Por favor, introduzca el código de la materia a actualizar: ");
-        String codigo = entrada.nextLine();
-
-        if (codigo.equals(partesMateria.getCodigoMateria())) {
-            printer("Ingrese el nuevo nombre de la materia: ");
+    public void registroMateria() throws Exception {
+        this.init();
+        try {
+            entrada = new Scanner(System.in);
+            printer("Registro de Materia: ");
+            printer("Por favor,introduzca el nombre de la materia a registrar: ");
             partesMateria.setNombreMateria(entrada.nextLine());
-            printer("Ingrese el nuevo código de la materia: ");
+            printer("Ahora, ingrese cual será el código de la materia a registrar: ");
             partesMateria.setCodigoMateria(entrada.nextLine());
-            printer("Ingrese el nuevo ciclo de la materia: ");
+            printer("Dime el año en que se debería cursar esta materia: ");
             partesMateria.setCicloMateria(entrada.nextInt());
 
-            printer("Materia actualizada.");
-            printer("Información actualizada: ");
+            //Añadimos a la lista
+            this.listMateria.add(partesMateria);
+            System.out.printf("---------------------------------%n");
+            printer("Nueva Materia Ingresada.");
+            printer("Información:");
             printer("Nombre de Materia: " + partesMateria.getNombreMateria());
             printer("Código de Materia: " + partesMateria.getCodigoMateria());
             printer("Ciclo en que se cursará la Materia: " + partesMateria.getCicloMateria());
-        } else {
-            printer("La materia con el código especificado no existe.", 0);
+            System.out.printf("---------------------------------%n");
+            //Restauramos
+            this.init();
+        } catch (Exception e) {
+            throw e;
         }
     }
 
-    public void leerMateria() {
-        Scanner entrada = new Scanner(System.in);
-
-        printer("Lectura de Materia:");
-        printer("Introduzca el nombre de la materia:");
-        partesMateria.setNombreMateria(entrada.nextLine());
-        printer("Introduzca el código de la materia:");
+    public void actualizarMateria() {
+        entrada = new Scanner(System.in);
+        printer("Actualización de Materia: ");
+        printer("Por favor, introduzca el código de la materia a actualizar: ");
         partesMateria.setCodigoMateria(entrada.nextLine());
-        printer("Introduzca el ciclo de la materia:");
-        partesMateria.setCicloMateria(entrada.nextInt());
+        for (Materia m : listMateria) {
+            if (m.getCodigoMateria().equals(partesMateria.getCodigoMateria())) {
+                // Actualizamos
+                printer("Ingrese el nuevo nombre de la materia: ");
+                m.setNombreMateria(entrada.nextLine());
+                printer("Ingrese el nuevo código de la materia: ");
+                m.setCodigoMateria(entrada.nextLine());
+                printer("Ingrese el nuevo ciclo de la materia: ");
+                m.setCicloMateria(entrada.nextInt());
 
-        printer("Materia.");
-        printer("Información de materia: ");
-        printer("Nombre: " + partesMateria.getNombreMateria());
-        printer("Código: " + partesMateria.getCodigoMateria());
-        printer("Ciclo: " + partesMateria.getCicloMateria());
+                // Mostramos
+                System.out.printf("---------------------------------%n");
+                printer("Materia actualizada.");
+                printer("Información actualizada: ");
+                printer("Nombre de Materia: " + m.getNombreMateria());
+                printer("Código de Materia: " + m.getCodigoMateria());
+                printer("Ciclo en que se cursará la Materia: " + m.getCicloMateria());
+                System.out.printf("---------------------------------%n");
+                break;
+            } else {
+                printer("La materia con el código especificado no existe.", 0);
+            }
+        }
+
+        this.init();
     }
 
-    public static void inhabilitarMateria() {
-        Scanner sc = new Scanner(System.in);
+    public void leerMateria() {
+        entrada = new Scanner(System.in);
+        printer("Introduzca el código de la materia:");
+        partesMateria.setCodigoMateria(entrada.nextLine());
+        for (Materia m : listMateria) {
+            if (m.getCodigoMateria().equals(partesMateria.getCodigoMateria())) {
+                System.out.printf("---------------------------------%n");
+                printer("• Materia.");
+                printer("   Información de materia ");
+                printer("   Nombre: " + m.getNombreMateria());
+                printer("   Código: " + m.getCodigoMateria());
+                printer("   Ciclo: " + m.getCicloMateria());
+                System.out.printf("---------------------------------%n");
+            }
+        }
+    }
+
+    public void inhabilitarMateria() {
+        entrada = new Scanner(System.in);
         printer("Ingrese el código de la materia que desea inhabilitar:");
-        String codigo = sc.nextLine();
-        for (Materia m : materia) {
+        String codigo = entrada.nextLine();
+        for (Materia m : listMateria) {
             if (m.getCodigoMateria().equals(codigo)) {
-                materia.remove(m);
+                listMateria.remove(m);
+                System.out.printf("---------------------------------%n");
                 printer("La materia con código '" + codigo + "'; ha sido inhabilitada.");
+                System.out.printf("---------------------------------%n");
                 return;
             }
         }
