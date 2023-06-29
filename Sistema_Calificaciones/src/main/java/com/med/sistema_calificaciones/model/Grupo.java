@@ -5,11 +5,13 @@
  */
 package com.med.sistema_calificaciones.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Fernando.Barraza
  */
-public class Grupo {
+public class Grupo implements Serializable{
 
     private String nombreGrupo;
     private Materia materiaAsignada;

@@ -5,11 +5,13 @@
  */
 package com.med.sistema_calificaciones.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Fernando.Barraza
  */
-public class GrupoAlumno {
+public class GrupoAlumno implements Serializable{
 
     private Integer identificador;
     private Alumno alumnoDefinido;

@@ -1,10 +1,12 @@
 package com.med.sistema_calificaciones.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author RomanMendoza
  */
-public class Materia {
+public class Materia implements Serializable{
 
     private String nombreMateria, codigoMateria;
     private int cicloMateria;

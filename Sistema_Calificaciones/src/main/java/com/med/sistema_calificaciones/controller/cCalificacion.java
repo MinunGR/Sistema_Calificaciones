@@ -9,12 +9,15 @@ import com.med.sistema_calificaciones.model.Alumno;
 import com.med.sistema_calificaciones.model.Calificacion;
 import com.med.sistema_calificaciones.model.Grupo;
 import com.med.sistema_calificaciones.model.GrupoAlumno;
+import com.med.sistema_calificaciones.model.Materia;
 import com.med.sistema_calificaciones.model.Ponderacion;
 import static com.med.sistema_calificaciones.utils.Impresion.printer;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
@@ -22,7 +25,7 @@ import javax.annotation.PostConstruct;
  *
  * @author Fernando.Barraza
  */
-public class cCalificacion {
+public class cCalificacion implements Serializable {
 
     // Modelos
     private Calificacion calif;
@@ -32,6 +35,8 @@ public class cCalificacion {
     private GrupoAlumno grupoAlumno;
     // Listados
     private List<Calificacion> listCalif = new ArrayList<>();
+    // Otros
+    private Scanner scn;
 
     public Calificacion getCalif() {
         return calif;
@@ -95,27 +100,41 @@ public class cCalificacion {
      *
      * @param gr_al
      * @param pond
-     * @param nota
      * @throws java.lang.Exception
      */
-    public void ingresarCalificacion(GrupoAlumno gr_al, Ponderacion pond, Double nota) throws Exception {
+    public void ingresarCalificacion(GrupoAlumno gr_al, Ponderacion pond) throws Exception {
+        this.init();
         try {
-            if (gr_al != null || pond != null || nota < 0.00) {
-                printer("Uno de los parametros recibidos no es valido.", 0);
-                return;
-            }
+            scn = new Scanner(System.in);
+//            if (gr_al != null || pond != null) {
+//                printer("Uno de los parametros recibidos no es valido.", 0);
+//                return;
+//            }
+            printer("Ingrese la calificación a asignar.");
+            // Creamos la calificación.
+            this.calif = new Calificacion(scn.nextDouble());
             // Pasamos el alumno y grupo correspondiente
             this.alumno = gr_al.getAlumnoDefinido();
-            this.grupo = gr_al.getGrupoPertenece();
             this.grupoAlumno.setAlumnoDefinido(alumno);
             this.grupoAlumno.setGrupoPertenece(grupo);
             this.grupoAlumno.setIdentificador(gr_al.getIdentificador());
-            // Creamos la calificación.
-            this.calif = new Calificacion(nota);
+            //Pasamos a entidad principal
             this.calif.setGrupoAlumno(grupoAlumno);
             this.calif.setPonderacion(pond);
             // La añadimos a la lista de calificaciones
             this.listCalif.add(calif);
+
+            //Mostramos
+            System.out.printf("---------------------------------%n");
+            printer("• Nueva Calificación Ingresada.");
+            printer("Información:");
+            printer("Calificación: " + calif.getCalificacion());
+            printer("Alumno: " + calif.getGrupoAlumno().getAlumnoDefinido().getCarnet());
+            printer("Grupo: " + calif.getGrupoAlumno().getGrupoPertenece().getNombreGrupo());
+            printer("Ponderación: " + calif.getPonderacion().getDescripcion() + " "
+                    + calif.getPonderacion().getPorcentaje() + "% ");
+            System.out.printf("---------------------------------%n");
+            //Restauramos
             this.init();
         } catch (Exception e) {
             throw e;
@@ -152,16 +171,22 @@ public class cCalificacion {
      * @param grupo
      * @return
      */
-    public List<Calificacion> filtrarCalifAlumno(String carnet, String grupo) {
+    public List<Calificacion> filtrarCalifGrupo(String grupo) {
         return listCalif.stream()
-                .filter(calfs -> calif.getGrupoAlumno().getAlumnoDefinido().getCarnet().equals(carnet)
-                && calif.getGrupoAlumno().getGrupoPertenece().getNombreGrupo().equals(grupo))
+                .filter(calif -> calif.getGrupoAlumno().getGrupoPertenece().getNombreGrupo().equals(grupo))
                 .collect(Collectors.toList());
     }
 
     public List<Calificacion> filtrarCalifAlumno(String carnet) {
         return listCalif.stream()
                 .filter(calif -> calif.getGrupoAlumno().getAlumnoDefinido().getCarnet().equals(carnet))
+                .collect(Collectors.toList());
+    }
+
+    public List<Calificacion> filtrarCalifAlumnoGrupo(String carnet, String grupo) {
+        return listCalif.stream()
+                .filter(calif -> calif.getGrupoAlumno().getGrupoPertenece().getNombreGrupo().equals(grupo)
+                && calif.getGrupoAlumno().getAlumnoDefinido().getCarnet().equals(carnet))
                 .collect(Collectors.toList());
     }
 
@@ -198,23 +223,56 @@ public class cCalificacion {
         } catch (Exception e) {
             throw e;
         }
-
         return promediosPorMateria;
     }
 
-    /*
-     public static void main(String[] args) {
-        // Ejemplo de uso
-        List<Nota> listaNotas = ...; // Obtener lista de notas
+    /**
+     * Función para eliminar una calificación ingresada.
+     *
+     * @throws java.lang.Exception
+     */
+    public void inhabilitarCalificacion() throws Exception {
+        this.init();
+        try {
+            scn = new Scanner(System.in);
+            printer("Ingrese un identificador de Calificación: .");
+            this.calif.setIdentificador(scn.nextInt());
 
-        Map<String, Double> promediosPorMateria = calcularPromedioPorMateria(listaNotas);
-
-        // Imprimir promedios por materia
-        for (String materia : promediosPorMateria.keySet()) {
-            double promedio = promediosPorMateria.get(materia);
-            System.out.println("Materia: " + materia + ", Promedio: " + promedio);
+            if (listCalif.contains(this.calif)) {
+                this.listCalif.removeIf(calif -> calif.getIdentificador().equals(this.calif.getIdentificador()));
+                System.out.printf("----------------------------------------------------------");
+                printer("• Calificación eliminada correctamente");
+                System.out.printf("----------------------------------------------------------");
+            } else {
+                System.out.printf("----------------------------------------------------------");
+                printer("• La calificación no existe en la lista");
+                System.out.printf("----------------------------------------------------------");
+            }
+            this.init();
+        } catch (Exception e) {
+            throw e;
         }
     }
-    
+
+    /**
+     * Función para obtener el id mayor
+     *
+     * @return
+     * @throws java.lang.Exception
      */
+    public int obtenerNumeroMayor() throws Exception {
+        // Si la lista se encuentra vacia devuelve 1
+        if (this.listCalif.isEmpty()) {
+            System.out.printf("-----------------------------------------------%n");
+            printer("• No existen registros anteriores.");
+            System.out.printf("-----------------------------------------------%n");
+            return 1;
+        }
+        // Si la lista no esta vacia usamos stream para obtener el mayor # y sumarle 1.
+        return this.listCalif.stream()
+                .mapToInt(Calificacion::getIdentificador)
+                .max()
+                .getAsInt() + 1;
+    }
+
 }

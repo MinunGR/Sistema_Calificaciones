@@ -7,6 +7,7 @@ package com.med.sistema_calificaciones.main;
 
 import com.med.sistema_calificaciones.controller.cMateria;
 import static com.med.sistema_calificaciones.utils.Consola.clearConsole;
+import static com.med.sistema_calificaciones.utils.Impresion.printer;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -34,7 +35,7 @@ public class Sistema_Calificaciones {
             System.out.printf("Inicializando");
             for (int i = 0; i < 3; i++) {
                 Thread.sleep(800);
-                System.out.printf(". ");
+                System.out.printf(".");
                 if (i == 2) {
                     System.out.printf("%n");
                 }
@@ -73,14 +74,18 @@ public class Sistema_Calificaciones {
                         // Movemos a apartado de grupos
                         Sistema_Redirecciones.menuPonderaciones(scn);
                         break;
+                    case ('5'):
+                        clearConsole();
+                        Sistema_Redirecciones.menuCalificaciones(scn);
+                        break;
                     case ('0'):
-                        System.out.println("Saliendo del programa...");
+                        printer("Saliendo del programa...");
                         break;
                 }
 
             } while (Pattern.matches("[1-9]", opt.toString()));
             Thread.sleep(2000);
-            System.out.println("Gracias por utilizar!");
+            printer("Gracias por utilizar!");
         } catch (Exception e) {
             throw e;
         }

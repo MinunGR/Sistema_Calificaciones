@@ -8,6 +8,7 @@ package com.med.sistema_calificaciones.controller;
 import com.med.sistema_calificaciones.model.Materia;
 import com.med.sistema_calificaciones.model.Ponderacion;
 import static com.med.sistema_calificaciones.utils.Impresion.printer;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ import javax.annotation.PostConstruct;
  *
  * @author usuario1
  */
-public class cPonderacion {
+public class cPonderacion implements Serializable {
 
     //Modelos
     private Ponderacion ponderacion;
@@ -102,7 +103,7 @@ public class cPonderacion {
      *
      * @param materiaBuscada
      */
-    public void eliminarClasesEspecificas(Materia materiaBuscada) {
+    public void inhabilitarPondMateria(Materia materiaBuscada) {
         try {
             this.listPond.removeIf(ponderacion -> ponderacion.getMateriaAsignada().getCodigoMateria().equals(materiaBuscada.getCodigoMateria()));
             System.out.printf("----------------------------------------------------------%n");
@@ -113,9 +114,61 @@ public class cPonderacion {
         }
     }
 
+    /**
+     * Función para obtener las ponderaciones de una materia solicitada.
+     *
+     * @param materiaBuscada
+     * @return
+     */
     public List<Ponderacion> filtrarPondPorMateria(String materiaBuscada) {
+
+        if (this.listPond.isEmpty()) {
+            System.out.printf("------------------------------------%n");
+            printer("• No existen ponderaciones registradas...", 0);
+            System.out.printf("------------------------------------%n");
+            return new ArrayList<>();
+        }
         return listPond.stream()
                 .filter(ponderacion -> ponderacion.getMateriaAsignada().getCodigoMateria().equals(materiaBuscada))
                 .collect(Collectors.toList());
     }
+
+    /**
+     * Función que obtiene una ponderación en base al index que posee en la
+     * lista
+     *
+     * @param lista
+     * @return
+     * @throws java.lang.Exception
+     */
+    public Ponderacion obtenerDeListaxIndex(List<Ponderacion> lista) throws Exception {
+        try {
+            Integer valor = 0;
+
+            if (lista.isEmpty()) {
+                System.out.printf("----------------------------------------------------------%n");
+                printer("• No existen ponderaciones para aplicar", 0);
+                System.out.printf("----------------------------------------------------------%n");
+            } else {
+                // Pedimos la ponderación a elegir.
+                do {
+                    printer("Seleccione un valor: Siendo el primero en lista N°1");
+                    valor = scn.nextInt();
+                    valor--;
+                } while (valor < 0 || valor > lista.size());
+
+                if (lista.get(valor) != null) {
+                    return lista.get(valor);
+                } else {
+                    System.out.printf("----------------------------------------------------------%n");
+                    printer("• El valor solicitado no existe.", 0);
+                    System.out.printf("----------------------------------------------------------%n");
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return null;
+    }
+
 }

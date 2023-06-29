@@ -4,8 +4,8 @@
 package com.med.sistema_calificaciones.controller;
 
 import com.med.sistema_calificaciones.model.Alumno;
-import com.med.sistema_calificaciones.model.Grupo;
 import static com.med.sistema_calificaciones.utils.Impresion.printer;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct;
  *
  * @author gabo
  */
-public class cAlumno {
+public class cAlumno implements Serializable{
 
     //Modelos
     private Alumno alumno;
@@ -74,8 +74,8 @@ public class cAlumno {
     public void modificarAlumno() throws Exception {
         try {
             scn = new Scanner(System.in);
-            printer("Actualización de Grupo: ");
-            printer("Por favor, introduzca el código del grupo a actualizar: ");
+            printer("Actualización de Alumno: ");
+            printer("Por favor, introduzca el carnet del alumno a actualizar: ");
             this.alumno.setCarnet(scn.nextLine());
             for (Alumno a : listaAlumnos) {
                 if (a.getCarnet().equals(this.alumno.getCarnet())) {
@@ -113,7 +113,7 @@ public class cAlumno {
                     if (alm.getCarnet().equals(this.alumno.getCarnet())) {
                         listaAlumnos.remove(alm);
                         System.out.printf("---------------------------------%n");
-                        printer("El Alumno con carnet '" + this.alumno.getCarnet() + "'; ha sido inhabilitado.");
+                        printer("El Alumno con carnet '" + this.alumno.getCarnet() + "', ha sido inhabilitado.");
                         System.out.printf("---------------------------------%n");
                         this.init();
                         return;
@@ -130,7 +130,7 @@ public class cAlumno {
 
     public Alumno leerInformacionAlumno() {
         scn = new Scanner(System.in);
-        printer("Ingrese el carnet que corresponde al Alumno a inhabilitar: ");
+        printer("Ingrese el carnet que corresponde al Alumno: ");
         this.alumno = buscarAlumnoPorCarnet(scn.nextLine());
 
         if (this.alumno != null) {

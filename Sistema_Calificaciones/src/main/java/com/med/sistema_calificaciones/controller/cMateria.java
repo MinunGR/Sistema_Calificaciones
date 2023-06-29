@@ -2,6 +2,7 @@ package com.med.sistema_calificaciones.controller;
 
 import com.med.sistema_calificaciones.model.Materia;
 import static com.med.sistema_calificaciones.utils.Impresion.printer;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +12,7 @@ import javax.annotation.PostConstruct;
  *
  * @author RomanMendoza
  */
-public class cMateria {
+public class cMateria implements Serializable {
 
     private Materia partesMateria;
     private List<Materia> listMateria = new ArrayList<>();
@@ -96,51 +97,34 @@ public class cMateria {
         this.init();
     }
 
-    public void leerMateria() {
-        entrada = new Scanner(System.in);
-        printer("Introduzca el código de la materia:");
-        partesMateria.setCodigoMateria(entrada.nextLine());
-        for (Materia m : listMateria) {
-            if (m.getCodigoMateria().equals(partesMateria.getCodigoMateria())) {
-                System.out.printf("---------------------------------%n");
-                printer("• Materia.");
-                printer("   Información de materia ");
-                printer("   Nombre: " + m.getNombreMateria());
-                printer("   Código: " + m.getCodigoMateria());
-                printer("   Ciclo: " + m.getCicloMateria());
-                System.out.printf("---------------------------------%n");
-                break;
-            }
-        }
-        this.init();
-    }
-
     public Materia buscarMateria() throws Exception {
+        this.init();
         try {
-
             entrada = new Scanner(System.in);
             printer("Introduzca el código de la materia:");
-            partesMateria.setCodigoMateria(entrada.nextLine());
-            for (Materia m : listMateria) {
-                if (m.getCodigoMateria().equals(partesMateria.getCodigoMateria())) {
-                    System.out.printf("---------------------------------%n");
-                    printer("• Materia Encontrada.");
-                    printer("   Información de materia ");
-                    printer("   Nombre: " + m.getNombreMateria()
-                            + ", Código: " + m.getCodigoMateria()
-                            + ", Ciclo: " + m.getCicloMateria());
-                    System.out.printf("---------------------------------%n");
-                    this.init();
-                    return m;
+            this.partesMateria.setCodigoMateria(entrada.nextLine());
+            if (!this.listMateria.isEmpty()) {
+                for (Materia m : listMateria) {
+                    if (m.getCodigoMateria().equals(partesMateria.getCodigoMateria())) {
+                        System.out.printf("---------------------------------%n");
+                        printer("• Materia Encontrada.");
+                        printer("   Información de materia ");
+                        printer("   Nombre: " + m.getNombreMateria());
+                        printer("   Código: " + m.getCodigoMateria());
+                        printer("   Ciclo: " + m.getCicloMateria());
+                        System.out.printf("---------------------------------%n");
+                        this.init();
+                        return m;
+                    }
                 }
             }
             this.init();
         } catch (Exception e) {
             throw e;
         }
-        System.out.printf("---------------------------------%n");
-        printer("No se encontro una materia con el código recibido.", 0);
-        System.out.printf("---------------------------------%n");
+        System.out.printf("---------------------------------------------------%n");
+        printer("• No se encontro una materia con el código recibido.", 0);
+        System.out.printf("---------------------------------------------------%n");
         return null; // Si no se encuentra una materia, se retorna null
 
     }
@@ -153,12 +137,14 @@ public class cMateria {
             if (m.getCodigoMateria().equals(codigo)) {
                 listMateria.remove(m);
                 System.out.printf("---------------------------------%n");
-                printer("La materia con código '" + codigo + "'; ha sido inhabilitada.");
+                printer("La materia con código '" + codigo + "', ha sido inhabilitada.");
                 System.out.printf("---------------------------------%n");
                 this.init();
                 return;
             }
         }
+        System.out.printf("---------------------------------%n");
         printer("La materia con código '" + codigo + "', no existe.", 0);
+        System.out.printf("---------------------------------%n");
     }
 }

@@ -5,11 +5,13 @@
  */
 package com.med.sistema_calificaciones.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author usuario1
  */
-public class TutorMateria {
+public class TutorMateria implements Serializable{
 
     private Integer identificador;
     private Tutor tutorDesignado;

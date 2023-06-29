@@ -5,11 +5,13 @@
  */
 package com.med.sistema_calificaciones.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author usuario1
  */
-public class Tutor {
+public class Tutor implements Serializable{
 
     private String carnet;
     private String nombre, apellido;

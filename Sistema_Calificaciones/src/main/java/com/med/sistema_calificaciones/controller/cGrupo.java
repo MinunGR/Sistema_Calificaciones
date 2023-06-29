@@ -8,6 +8,7 @@ package com.med.sistema_calificaciones.controller;
 import com.med.sistema_calificaciones.model.Grupo;
 import com.med.sistema_calificaciones.model.Materia;
 import static com.med.sistema_calificaciones.utils.Impresion.printer;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ import javax.annotation.PostConstruct;
  *
  * @author Fernando.Barraza
  */
-public class cGrupo {
+public class cGrupo implements Serializable {
 
     //Modelos
     private Grupo grupo;
@@ -68,20 +69,27 @@ public class cGrupo {
         Integer cant = 0;
         this.init();
         try {
-            scn = new Scanner(System.in);
-            printer("Ingrese la cantidad de grupos a crear:");
-            cant = scn.nextInt();
-            for (int i = 0; i < cant; i++) {
-                // Creamos un grupo
-                this.grupo = new Grupo(materia.getCodigoMateria() + "0" + (i + 1));
-                this.grupo.setMateriaAsignada(materia);
-                // Añadimos el grupo a la lista.
-                this.listGrupo.add(grupo);
-                this.init();
+            if (materia != null) {
+                scn = new Scanner(System.in);
+                printer("Ingrese la cantidad de grupos a crear:");
+                cant = scn.nextInt();
+                for (int i = 0; i < cant; i++) {
+                    // Creamos un grupo
+                    this.grupo = new Grupo(materia.getCodigoMateria() + "0" + (i + 1));
+                    this.grupo.setMateriaAsignada(materia);
+                    // Añadimos el grupo a la lista.
+                    this.listGrupo.add(grupo);
+                    this.init();
+                }
+                System.out.printf("------------------------------------------------------------------------%n");
+                printer("Se crearon " + cant + " grupos en " + materia.getCodigoMateria() + " exitosamente.");
+                System.out.printf("------------------------------------------------------------------------%n");
+            } else {
+                System.out.printf("------------------------------------%n");
+                printer("• No existe una materia con el código recibido.", 0);
+                System.out.printf("------------------------------------%n");
             }
-            System.out.printf("------------------------------------------------------------------------%n");
-            printer("Se crearon " + cant + " grupos en " + materia.getCodigoMateria() + " exitosamente.");
-            System.out.printf("------------------------------------------------------------------------%n");
+
         } catch (Exception e) {
             throw e;
         }
@@ -95,21 +103,24 @@ public class cGrupo {
      *
      */
     public Grupo buscarGrupoPorCodigo() throws Exception {
+        this.init();
         try {
             scn = new Scanner(System.in);
             printer("Introduzca el código del grupo:");
             this.grupo.setNombreGrupo(scn.nextLine());
-            for (Grupo grp : listGrupo) {
-                if (grp.getNombreGrupo().equals(grupo.getNombreGrupo())) {
-                    System.out.printf("---------------------------------%n");
-                    printer("• Grupo Encontrado.");
-                    printer("   Información de grupo ");
-                    printer("   Nombre: " + grp.getNombreGrupo());
-                    printer("   Materia: " + grp.getMateriaAsignada().getNombreMateria());
-                    printer("   Código de materia: " + grp.getMateriaAsignada().getCodigoMateria());
-                    System.out.printf("---------------------------------%n");
-                    this.init();
-                    return grp;
+            if (!this.listGrupo.isEmpty()) {
+                for (Grupo grp : listGrupo) {
+                    if (grp.getNombreGrupo().equals(grupo.getNombreGrupo())) {
+                        System.out.printf("---------------------------------%n");
+                        printer("• Grupo Encontrado.");
+                        printer("   Información de grupo ");
+                        printer("   Nombre: " + grp.getNombreGrupo());
+                        printer("   Materia: " + grp.getMateriaAsignada().getNombreMateria());
+                        printer("   Código de materia: " + grp.getMateriaAsignada().getCodigoMateria());
+                        System.out.printf("---------------------------------%n");
+                        this.init();
+                        return grp;
+                    }
                 }
             }
             this.init();
@@ -117,7 +128,7 @@ public class cGrupo {
             throw e;
         }
         System.out.printf("------------------------------------%n");
-        printer("No se encontro el grupo con el nombre recibido.", 0);
+        printer("• No se encontro el grupo con el nombre recibido.", 0);
         System.out.printf("------------------------------------%n");
         return null; // Si no se encuentra el grupo, se retorna null
     }
@@ -129,6 +140,12 @@ public class cGrupo {
      * @return
      */
     public List<Grupo> filtrarGruposPorMateria(String materiaBuscada) {
+        if (this.listGrupo.isEmpty()) {
+            System.out.printf("------------------------------------%n");
+            printer("• No existen grupos registrados...", 0);
+            System.out.printf("------------------------------------%n");
+            return new ArrayList<>();
+        }
         return listGrupo.stream()
                 .filter(grupo -> grupo.getMateriaAsignada().getCodigoMateria().equals(materiaBuscada))
                 .collect(Collectors.toList());
@@ -147,14 +164,12 @@ public class cGrupo {
                     if (grp.getNombreGrupo().equals(this.grupo.getNombreGrupo())) {
                         listGrupo.remove(grp);
                         System.out.printf("---------------------------------%n");
-                        printer("El grupo de nombre '" + this.grupo.getNombreGrupo() + "'; ha sido inhabilitado.");
+                        printer("• El grupo de nombre '" + this.grupo.getNombreGrupo() + "', ha sido inhabilitado.");
                         System.out.printf("---------------------------------%n");
                         this.init();
                         return;
                     }
                 }
-            } else {
-                printer("No se encontró ningún grupo con el nombre especificado.", 0);
             }
             this.init();
         } catch (Exception e) {

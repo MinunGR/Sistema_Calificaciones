@@ -5,11 +5,13 @@
  */
 package com.med.sistema_calificaciones.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author usuario1
  */
-public class Ponderacion {
+public class Ponderacion implements Serializable{
 
     private String descripcion;
     private Double porcentaje;

@@ -1,10 +1,12 @@
 package com.med.sistema_calificaciones.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author gabo
  */
-public class Alumno {
+public class Alumno implements Serializable{
 
     private String carnet;
     private String nombreCompleto;
