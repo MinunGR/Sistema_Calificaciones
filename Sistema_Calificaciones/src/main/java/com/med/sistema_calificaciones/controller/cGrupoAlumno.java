@@ -5,7 +5,6 @@
  */
 package com.med.sistema_calificaciones.controller;
 
-import com.med.sistema_calificaciones.model.Grupo;
 import com.med.sistema_calificaciones.model.GrupoAlumno;
 import java.util.ArrayList;
 import java.util.List;

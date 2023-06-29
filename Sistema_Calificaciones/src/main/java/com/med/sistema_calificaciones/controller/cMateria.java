@@ -1,6 +1,7 @@
 package com.med.sistema_calificaciones.controller;
 
 import com.med.sistema_calificaciones.model.Materia;
+import static com.med.sistema_calificaciones.utils.Impresion.printer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -37,32 +38,6 @@ public class cMateria {
         this.partesMateria = new Materia();
     }
 
-    /**
-     * Función impresión básica en consola
-     *
-     * @param texto
-     */
-    public static void printer(String texto) {
-        System.out.println(texto);
-    }
-
-    /**
-     * Función impresión de advertencias y errores.
-     *
-     * @param texto
-     * @param tipo
-     */
-    public static void printer(String texto, int tipo) {
-        switch (tipo) {
-            case 0:
-                System.out.println("Advertencia: " + texto);
-                break;
-            case 1:
-                System.err.println("Error: " + texto);
-                break;
-        }
-    }
-
     public void registroMateria() throws Exception {
         this.init();
         try {
@@ -72,13 +47,14 @@ public class cMateria {
             partesMateria.setNombreMateria(entrada.nextLine());
             printer("Ahora, ingrese cual será el código de la materia a registrar: ");
             partesMateria.setCodigoMateria(entrada.nextLine());
-            printer("Dime el año en que se debería cursar esta materia: ");
+            printer("Dime el ciclo en que se debería cursar esta materia: ");
             partesMateria.setCicloMateria(entrada.nextInt());
 
             //Añadimos a la lista
             this.listMateria.add(partesMateria);
+            //Mostramos
             System.out.printf("---------------------------------%n");
-            printer("Nueva Materia Ingresada.");
+            printer("• Nueva Materia Ingresada.");
             printer("Información:");
             printer("Nombre de Materia: " + partesMateria.getNombreMateria());
             printer("Código de Materia: " + partesMateria.getCodigoMateria());
@@ -108,18 +84,15 @@ public class cMateria {
 
                 // Mostramos
                 System.out.printf("---------------------------------%n");
-                printer("Materia actualizada.");
-                printer("Información actualizada: ");
+                printer("• Materia actualizada.");
+                printer("Información: ");
                 printer("Nombre de Materia: " + m.getNombreMateria());
                 printer("Código de Materia: " + m.getCodigoMateria());
                 printer("Ciclo en que se cursará la Materia: " + m.getCicloMateria());
                 System.out.printf("---------------------------------%n");
                 break;
-            } else {
-                printer("La materia con el código especificado no existe.", 0);
             }
         }
-
         this.init();
     }
 
@@ -136,8 +109,40 @@ public class cMateria {
                 printer("   Código: " + m.getCodigoMateria());
                 printer("   Ciclo: " + m.getCicloMateria());
                 System.out.printf("---------------------------------%n");
+                break;
             }
         }
+        this.init();
+    }
+
+    public Materia buscarMateria() throws Exception {
+        try {
+
+            entrada = new Scanner(System.in);
+            printer("Introduzca el código de la materia:");
+            partesMateria.setCodigoMateria(entrada.nextLine());
+            for (Materia m : listMateria) {
+                if (m.getCodigoMateria().equals(partesMateria.getCodigoMateria())) {
+                    System.out.printf("---------------------------------%n");
+                    printer("• Materia Encontrada.");
+                    printer("   Información de materia ");
+                    printer("   Nombre: " + m.getNombreMateria()
+                            + ", Código: " + m.getCodigoMateria()
+                            + ", Ciclo: " + m.getCicloMateria());
+                    System.out.printf("---------------------------------%n");
+                    this.init();
+                    return m;
+                }
+            }
+            this.init();
+        } catch (Exception e) {
+            throw e;
+        }
+        System.out.printf("---------------------------------%n");
+        printer("No se encontro una materia con el código recibido.", 0);
+        System.out.printf("---------------------------------%n");
+        return null; // Si no se encuentra una materia, se retorna null
+
     }
 
     public void inhabilitarMateria() {
@@ -150,9 +155,10 @@ public class cMateria {
                 System.out.printf("---------------------------------%n");
                 printer("La materia con código '" + codigo + "'; ha sido inhabilitada.");
                 System.out.printf("---------------------------------%n");
+                this.init();
                 return;
             }
         }
-        printer("La materia con código '" + codigo + "'; no existe.", 0);
+        printer("La materia con código '" + codigo + "', no existe.", 0);
     }
 }

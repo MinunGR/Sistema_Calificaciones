@@ -11,7 +11,6 @@ package com.med.sistema_calificaciones.model;
  */
 public class Ponderacion {
 
-    private String identificador;
     private String descripcion;
     private Double porcentaje;
     private Materia materiaAsignada;
@@ -19,18 +18,9 @@ public class Ponderacion {
     public Ponderacion() {
     }
 
-    public Ponderacion(String identificador, String descripcion, Double porcentaje) {
-        this.identificador = identificador;
+    public Ponderacion(String descripcion, Double porcentaje) {
         this.descripcion = descripcion;
         this.porcentaje = porcentaje;
-    }
-
-    public String getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
     }
 
     public String getDescripcion() {
@@ -59,7 +49,7 @@ public class Ponderacion {
 
     @Override
     public String toString() {
-        return "Ponderacion{" + "identificador=" + identificador + ", descripcion=" + descripcion
+        return "Ponderacion{" + ", descripcion=" + descripcion
                 + ", porcentaje=" + porcentaje + ", materia=" + materiaAsignada.toString() + '}';
     }
 

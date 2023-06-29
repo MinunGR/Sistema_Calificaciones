@@ -10,6 +10,7 @@ import com.med.sistema_calificaciones.model.Calificacion;
 import com.med.sistema_calificaciones.model.Grupo;
 import com.med.sistema_calificaciones.model.GrupoAlumno;
 import com.med.sistema_calificaciones.model.Ponderacion;
+import static com.med.sistema_calificaciones.utils.Impresion.printer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -90,32 +91,6 @@ public class cCalificacion {
     }
 
     /**
-     * Función impresión básica en consola
-     *
-     * @param texto
-     */
-    public static void printer(String texto) {
-        System.out.println(texto);
-    }
-
-    /**
-     * Función impresión de advertencias y errores.
-     *
-     * @param texto
-     * @param tipo
-     */
-    public static void printer(String texto, int tipo) {
-        switch (tipo) {
-            case 0:
-                System.out.println("Advertencia: " + texto);
-                break;
-            case 1:
-                System.err.println("Error: " + texto);
-                break;
-        }
-    }
-
-    /**
      * Método para ingresar una calificación
      *
      * @param gr_al
@@ -158,9 +133,9 @@ public class cCalificacion {
     public Calificacion buscarCalifPorPonderacion(String idPonderacion) throws Exception {
         try {
             for (Calificacion cal : listCalif) {
-                if (cal.getPonderacion().getIdentificador().equals(idPonderacion)) {
-                    return cal;
-                }
+//                if (cal.getPonderacion().getIdentificador().equals(idPonderacion)) {
+//                    return cal;
+//                }
             }
             this.init();
         } catch (Exception e) {
@@ -186,7 +161,7 @@ public class cCalificacion {
 
     public List<Calificacion> filtrarCalifAlumno(String carnet) {
         return listCalif.stream()
-                .filter(calfs -> calif.getGrupoAlumno().getAlumnoDefinido().getCarnet().equals(carnet))
+                .filter(calif -> calif.getGrupoAlumno().getAlumnoDefinido().getCarnet().equals(carnet))
                 .collect(Collectors.toList());
     }
 
