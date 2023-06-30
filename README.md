@@ -15,7 +15,7 @@ Durante el Ciclo I del corriente 2023 que finalizamos, en la materia de **'Manej
   - `Crear materias`: Se permite al usuario registrar una asignatura.-
   - `Crear grupos`: Se solicita la cantidad de grupos a crear para una determinada materia.-
   - `Asignar alumnos a grupos`: Asignación de alumnos a grupos disponibles.-
-  - `Crear ponderaciones`: Se crean actividades ponderadas para una materia.-
+  - `Crear actividades ponderadas`: Se crean actividades ponderadas para una materia.-
   - `Agregar calificaciones por grupo`: Se selecciona un código de grupo para ver los alumnos de ese grupo y colocar la calificación.-
   - `Ver resumen de calificaciones`: Muestra el resumen de calificaciones por un grupo de una materia.-
   - `Ver resumen de calificaciones por alumno`: Muestra el resumen de calificaciones de todas las materias para un alumno.-
