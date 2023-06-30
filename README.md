@@ -23,7 +23,7 @@ Durante el Ciclo I del corriente 2023 que finalizamos, en la materia de **'Manej
 
 
 ## :heavy_check_mark:Tecnología utilizada:
-- Java Jdk 17
+- Java Jdk 1.8
 
 ## :computer:Entorno de Desarrollo utilizado:
 - Apache NetBeans 17
