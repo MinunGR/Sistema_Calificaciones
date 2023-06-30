@@ -12,7 +12,7 @@ Durante el Ciclo I del corriente 2023 que finalizamos, en la materia de **'Manej
 - Hicimos nuestra clase ***principal [main]*** ejecutará todo nuestro proyecto. Dicha clase se auxilia de la clase *redirecciones* que contiene la lógica para la resolución de peticiones.
 
 ## :hammer:Funcionalidades del proyecto:
-- - `Crear materias`: Se permite al usuario registrar una asignatura.-
+  - `Crear materias`: Se permite al usuario registrar una asignatura.-
   - `Crear grupos`: Se solicita la cantidad de grupos a crear para una determinada materia.-
   - `Asignar alumnos a grupos`: Asignación de alumnos a grupos disponibles.-
   - `Crear ponderaciones`: Se crean actividades ponderadas para una materia.-
@@ -22,16 +22,16 @@ Durante el Ciclo I del corriente 2023 que finalizamos, en la materia de **'Manej
   - `Salir`: Finaliza la ejecución del programa.-
 
 
-## Tecnología utilizada:
+## :check:Tecnología utilizada:
 - Java Jdk 17
 
-## Entorno de Desarrollo utilizado:
+## :computer:Entorno de Desarrollo utilizado:
 - Apache NetBeans 17
 
-## Cómo ejecutar el proyecto:
-Debido a la naturaleza didáctica de este proyecto, se entregará por los implicados al tutor para su revisión. No obstante, con la descarga de este repositorio y posterior compilación será suficiente.
+## :speech_balloon:Cómo ejecutar el proyecto:
+Debido a la naturaleza didáctica de este proyecto, se entregará por los implicados al tutor para su revisión. No obstante, con la descarga de este repositorio y posterior compilación es suficiente.
 
-## Autores del proyecto:
+## :busts_in_silhouette:Autores del proyecto:
 - Fernando José Barraza Álvarez  
   **BA22025**
 - Gabriel Alexander Calderón Villeda  
