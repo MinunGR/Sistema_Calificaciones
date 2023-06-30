@@ -119,17 +119,28 @@ public class cGrupoAlumno implements Serializable {
      *
      * @param carnet
      * @return
+     * @throws java.lang.Exception
      */
-    public List<GrupoAlumno> filtrarGruposPorAlumno(String carnet) {
-        if (this.listGr_al.isEmpty()) {
-            System.out.printf("------------------------------------%n");
-            printer("• El estudiante no tiene grupos asignados...", 0);
-            System.out.printf("------------------------------------%n");
-            return new ArrayList<>();
+    public List<GrupoAlumno> filtrarGruposPorAlumno(String carnet) throws Exception {
+        List<GrupoAlumno> grupoAlumnoFiltrados = new ArrayList<>();
+        try {
+            if (this.listGr_al.isEmpty()) {
+                System.out.printf("------------------------------------%n");
+                printer("• No hay alumnos con grupos asignados...", 0);
+                System.out.printf("------------------------------------%n");
+                return new ArrayList<>();
+            }
+            grupoAlumnoFiltrados = listGr_al.stream()
+                    .filter(grupoAl -> grupoAl.getAlumnoDefinido().getCarnet().equals(carnet))
+                    .collect(Collectors.toList());
+
+            if (grupoAlumnoFiltrados.isEmpty()) {
+                return new ArrayList<>();
+            }
+        } catch (Exception e) {
+            throw e;
         }
-        return listGr_al.stream()
-                .filter(grupoAl -> grupoAl.getAlumnoDefinido().getCarnet().equals(carnet))
-                .collect(Collectors.toList());
+        return grupoAlumnoFiltrados;
     }
 
     /**
@@ -138,8 +149,9 @@ public class cGrupoAlumno implements Serializable {
      *
      * @param list
      * @return
+     * @throws java.lang.Exception
      */
-    public GrupoAlumno obtenerAlumnoGrupoID(List<GrupoAlumno> list) {
+    public GrupoAlumno obtenerAlumnoGrupoID(List<GrupoAlumno> list) throws Exception {
         this.init();
         try {
             if (list.isEmpty()) {
@@ -151,12 +163,22 @@ public class cGrupoAlumno implements Serializable {
             scn = new Scanner(System.in);
             printer("Ingrese un ID de alumno: ");
             this.grupoAl.setIdentificador(scn.nextInt());
+
+            this.grupoAl = list.stream()
+                    .filter(grupoAl -> grupoAl.getIdentificador().equals(this.grupoAl.getIdentificador()))
+                    .findFirst().orElse(null);
+            if (this.grupoAl != null) {
+
+                return this.grupoAl;
+            }
+
         } catch (Exception e) {
             throw e;
         }
-        return list.stream()
-                .filter(grupoAl -> grupoAl.getIdentificador().equals(this.grupoAl.getIdentificador()))
-                .findFirst().get();
+        System.out.printf("------------------------------------%n");
+        printer("• No existe un registro para esta identificador...", 0);
+        System.out.printf("------------------------------------%n");
+        return null;
     }
 
     /**

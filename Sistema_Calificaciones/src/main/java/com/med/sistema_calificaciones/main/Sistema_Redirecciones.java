@@ -98,7 +98,7 @@ public class Sistema_Redirecciones {
                 if (opt == 'e') {
                     System.out.println("Saliendo del programa...");
                     Thread.sleep(1500);
-                    System.out.println("Gracias por utilizar!");
+                    System.out.println("Fin de la transmisión...");
                     System.exit(0);
                 }
             } while (Pattern.matches("[1-9]", opt.toString())); // Revisión para saber que valor retorna
@@ -225,7 +225,7 @@ public class Sistema_Redirecciones {
                 if (opt == 'e') {
                     System.out.println("Saliendo del programa...");
                     Thread.sleep(1500);
-                    System.out.println("Gracias por utilizar!");
+                    System.out.println("Fin de la transmisión...");
                     System.exit(0);
                 }
             } while (Pattern.matches("[1-9]", opt.toString())); // Revisión para saber que valor retorna
@@ -328,7 +328,7 @@ public class Sistema_Redirecciones {
                 if (opt == 'e') {
                     System.out.println("Saliendo del programa...");
                     Thread.sleep(1500);
-                    System.out.println("Gracias por utilizar!");
+                    System.out.println("Fin de la transmisión...");
                     System.exit(0);
                 }
             } while (Pattern.matches("[1-9]", opt.toString()));
@@ -416,7 +416,7 @@ public class Sistema_Redirecciones {
                             System.out.printf("| %-10s | %-10s | %-10s |%n", "PORCENTAJE", "DESC", "MATERIA");
                             System.out.printf("----------------------------------%n");
                             for (int i = 0; i < cpond.getListPond().size(); i++) {
-                                System.out.printf("| %-10s | %-10s| %-10s |%n", cpond.getListPond().get(i).getPorcentaje(),
+                                System.out.printf("| %-10s | %-10s | %-10s |%n", cpond.getListPond().get(i).getPorcentaje(),
                                         cpond.getListPond().get(i).getDescripcion(), cpond.getListPond().get(i).getMateriaAsignada().getCodigoMateria());
                             }
                             System.out.printf("----------------------------------%n");
@@ -426,7 +426,7 @@ public class Sistema_Redirecciones {
                 if (opt == 'e') {
                     System.out.println("Saliendo del programa...");
                     Thread.sleep(1500);
-                    System.out.println("Gracias por utilizar!");
+                    System.out.println("Fin de la transmisión...");
                     System.exit(0);
                 }
             } while (Pattern.matches("[1-9]", opt.toString()));
@@ -477,11 +477,11 @@ public class Sistema_Redirecciones {
                                 // Filtramos por ese grupo.
                                 List<GrupoAlumno> listGrAltmp = cgral.filtrarAlumnosdeGrupo(grupoFilter.getNombreGrupo());
                                 // Imprimimos la lista de alumnos en el grupo
-                                System.out.printf("----------------------------------%n");
-                                System.out.printf(" Listado de Alumnos               %n");
-                                System.out.printf("----------------------------------%n");
+                                System.out.printf("-------------------------------------------------------%n");
+                                System.out.printf("                    Listado de Alumnos                 %n");
+                                System.out.printf("-------------------------------------------------------%n");
                                 System.out.printf("| %5s | %-10s | %-15s | %-10s |%n", "#", "CARNET", "NOMBRE COMPLETO", "GRUPO");
-                                System.out.printf("----------------------------------%n");
+                                System.out.printf("-------------------------------------------------------%n");
                                 for (int i = 0; i < listGrAltmp.size(); i++) {
                                     System.out.printf("| %5s | %-10s | %-15s | %-10s |%n",
                                             listGrAltmp.get(i).getIdentificador(),
@@ -489,7 +489,7 @@ public class Sistema_Redirecciones {
                                             listGrAltmp.get(i).getAlumnoDefinido().getNombreCompleto(),
                                             listGrAltmp.get(i).getGrupoPertenece().getNombreGrupo());
                                 }
-                                System.out.printf("----------------------------------%n");
+                                System.out.printf("---------------------------------------------------%n");
                                 //Buscamos el alumno necesitado, filtrando la lista anterior.
                                 GrupoAlumno gralFilter = cgral.obtenerAlumnoGrupoID(listGrAltmp);
                                 if (gralFilter != null) {
@@ -498,16 +498,16 @@ public class Sistema_Redirecciones {
                                     List<Ponderacion> listPondFilter
                                             = cpond.filtrarPondPorMateria(grupoFilter.getMateriaAsignada().getCodigoMateria());
                                     // Imprimimos la lista
-                                    System.out.printf("----------------------------------%n");
-                                    System.out.printf(" Listado de Ponderaciones               %n");
-                                    System.out.printf("----------------------------------%n");
+                                    System.out.printf("---------------------------------------------%n");
+                                    System.out.printf("           Listado de Ponderaciones          %n");
+                                    System.out.printf("---------------------------------------------%n");
                                     System.out.printf("| %-10s | %-10s | %-10s |%n", "PORCENTAJE", "DESC", "MATERIA");
-                                    System.out.printf("----------------------------------%n");
-                                    for (int i = 0; i < listGrAltmp.size(); i++) {
+                                    System.out.printf("---------------------------------------------%n");
+                                    for (int i = 0; i < listPondFilter.size(); i++) {
                                         System.out.printf("| %-10s | %-10s | %-10s |%n", listPondFilter.get(i).getPorcentaje(),
                                                 listPondFilter.get(i).getDescripcion(), listPondFilter.get(i).getMateriaAsignada().getCodigoMateria());
                                     }
-                                    System.out.printf("----------------------------------%n");
+                                    System.out.printf("---------------------------------------------%n");
                                     // Elegimos una ponderación
                                     Ponderacion pndtmp = cpond.obtenerDeListaxIndex(listPondFilter);
                                     if (pndtmp != null) {
@@ -543,20 +543,20 @@ public class Sistema_Redirecciones {
                                 Grupo grupoCaliftmp = cgrupo.buscarGrupoPorCodigo();
                                 if (grupoCaliftmp != null) {
                                     List<Calificacion> listCalifFilter = ccalif.filtrarCalifGrupo(grupoCaliftmp.getNombreGrupo());
-                                    System.out.printf("----------------------------%n");
-                                    System.out.printf(" Listado de Calificaciones          %n");
-                                    System.out.printf("----------------------------%n");
-                                    System.out.printf("| %-10s | %-15s | %10s | %5s |%n", "CARNET", "NOMBRE", "CONCEPTO", "CALIFICACIÓN");
-                                    System.out.printf("----------------------------%n");
+                                    System.out.printf("------------------------------------------------%n");
+                                    System.out.printf("             Listado de Calificaciones          %n");
+                                    System.out.printf("------------------------------------------------%n");
+                                    System.out.printf("| %-10s | %-15s | %-10s | %-5s |%n", "CARNET", "NOMBRE", "CONCEPTO", "CALIFICACIÓN");
+                                    System.out.printf("------------------------------------------------%n");
                                     for (int i = 0; i < listCalifFilter.size(); i++) {
-                                        System.out.printf("| %-10s | %-15s | %10s | %5s |%n",
+                                        System.out.printf("| %-10s | %-15s | %-10s | %-5s |%n",
                                                 listCalifFilter.get(i).getGrupoAlumno().getAlumnoDefinido().getCarnet(),
                                                 listCalifFilter.get(i).getGrupoAlumno().getAlumnoDefinido().getNombreCompleto(),
-                                                (listCalifFilter.get(i).getPonderacion().getPorcentaje() + "%" + listCalifFilter.get(i).getPonderacion().getDescripcion()),
+                                                (listCalifFilter.get(i).getPonderacion().getPorcentaje() + "% -" + listCalifFilter.get(i).getPonderacion().getDescripcion()),
                                                 listCalifFilter.get(i).getCalificacion()
                                         );
                                     }
-                                    System.out.printf("----------------------------%n");
+                                    System.out.printf("------------------------------------------------%n");
                                 }
                             }
                             break;
@@ -578,11 +578,11 @@ public class Sistema_Redirecciones {
                                 // Obtenemos las materias de ese alumno
                                 List<GrupoAlumno> listGrAltmp = cgral.filtrarGruposPorAlumno(alumnoFilter.getCarnet());
                                 // Imprimimos la lista de materias del alumno
-                                System.out.printf("----------------------------------%n");
-                                System.out.printf(" Materias inscritas               %n");
-                                System.out.printf("----------------------------------%n");
+                                System.out.printf("------------------------------------------------%n");
+                                System.out.printf("               Materias inscritas               %n");
+                                System.out.printf("------------------------------------------------%n");
                                 System.out.printf("| %5s | %-10s | %-15s | %-10s |%n", "#", "CARNET", "NOMBRE COMPLETO", "MATERIA");
-                                System.out.printf("----------------------------------%n");
+                                System.out.printf("------------------------------------------------%n");
                                 for (int i = 0; i < listGrAltmp.size(); i++) {
                                     System.out.printf("| %5s | %-10s | %-15s | %-10s |%n",
                                             listGrAltmp.get(i).getIdentificador(),
@@ -590,9 +590,9 @@ public class Sistema_Redirecciones {
                                             listGrAltmp.get(i).getAlumnoDefinido().getNombreCompleto(),
                                             listGrAltmp.get(i).getGrupoPertenece().getMateriaAsignada().getCodigoMateria());
                                 }
-                                System.out.printf("----------------------------------%n");
+                                System.out.printf("------------------------------------------------%n");
 
-                                System.out.printf("\n\n\n");
+                                System.out.printf("\n\n");
                                 for (int i = 0; i < listGrAltmp.size(); i++) {
                                     /* Filtramos las notas en base a carnet y grupo
                                        de esta forma, podemos filtrar por materia igualmente.
@@ -601,36 +601,34 @@ public class Sistema_Redirecciones {
                                             = ccalif.filtrarCalifAlumnoGrupo(alumnoFilter.getCarnet(), listGrAltmp.get(i).getGrupoPertenece().getNombreGrupo());
                                     // Imprimimos las notas de todas las materias para este alumno.
                                     printer("• " + listGrAltmp.get(i).getGrupoPertenece().getMateriaAsignada().getNombreMateria());
-                                    System.out.printf("----------------------------%n");
-                                    System.out.printf(" Listado de Calificaciones          %n");
-                                    System.out.printf("----------------------------%n");
-                                    System.out.printf("| %-10s | %-15s | %10s | %5s |%n", "CARNET", "NOMBRE", "CONCEPTO", "CALIFICACIÓN");
-                                    System.out.printf("----------------------------%n");
+                                    System.out.printf("------------------------------------------------%n");
+                                    System.out.printf("             Listado de Calificaciones          %n");
+                                    System.out.printf("------------------------------------------------%n");
+                                    System.out.printf("| %-10s | %-15s | %-10s | %-5s |%n", "CARNET", "NOMBRE", "CONCEPTO", "CALIFICACIÓN");
+                                    System.out.printf("------------------------------------------------%n");
                                     for (int j = 0; j < listCalifGrAlFilter.size(); j++) {
-                                        System.out.printf("| %-10s | %-15s | %10s | %5s |%n",
+                                        System.out.printf("| %-10s | %-15s | %-10s | %-5s |%n",
                                                 listCalifGrAlFilter.get(j).getGrupoAlumno().getAlumnoDefinido().getCarnet(),
                                                 listCalifGrAlFilter.get(j).getGrupoAlumno().getAlumnoDefinido().getNombreCompleto(),
-                                                (listCalifGrAlFilter.get(j).getPonderacion().getPorcentaje() + listCalifGrAlFilter.get(j).getPonderacion().getDescripcion()),
+                                                (listCalifGrAlFilter.get(j).getPonderacion().getPorcentaje() + "% -" + listCalifGrAlFilter.get(j).getPonderacion().getDescripcion()),
                                                 listCalifGrAlFilter.get(j).getCalificacion()
                                         );
                                     }
-                                    System.out.printf("----------------------------%n");
+                                    System.out.printf("------------------------------------------------%n");
                                     printer("PROMEDIO : "
                                             + listCalifGrAlFilter.stream().mapToDouble(Calificacion::getCalificacion)
                                                     .average()
                                                     .orElse(0.00));
-                                    System.out.printf("----------------------------%n");
+                                    System.out.printf("------------------------------------------------%n");
                                 }
-
                             }
-
                             break;
                     }
                 }
                 if (opt == 'e') {
                     System.out.println("Saliendo del programa...");
                     Thread.sleep(1500);
-                    System.out.println("Gracias por utilizar!");
+                    System.out.println("Fin de la transmisión...");
                     System.exit(0);
                 }
             } while (Pattern.matches("[1-9]", opt.toString()));

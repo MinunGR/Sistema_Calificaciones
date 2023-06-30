@@ -115,6 +115,7 @@ public class cCalificacion implements Serializable {
             this.calif = new Calificacion(scn.nextDouble());
             // Pasamos el alumno y grupo correspondiente
             this.alumno = gr_al.getAlumnoDefinido();
+            this.grupo = gr_al.getGrupoPertenece();
             this.grupoAlumno.setAlumnoDefinido(alumno);
             this.grupoAlumno.setGrupoPertenece(grupo);
             this.grupoAlumno.setIdentificador(gr_al.getIdentificador());
@@ -172,22 +173,52 @@ public class cCalificacion implements Serializable {
      * @return
      */
     public List<Calificacion> filtrarCalifGrupo(String grupo) {
-        return listCalif.stream()
-                .filter(calif -> calif.getGrupoAlumno().getGrupoPertenece().getNombreGrupo().equals(grupo))
-                .collect(Collectors.toList());
+        List<Calificacion> calificacionesFiltradas = new ArrayList<>();
+        try {
+            calificacionesFiltradas = listCalif.stream()
+                    .filter(calif -> calif.getGrupoAlumno().getGrupoPertenece().getNombreGrupo().equals(grupo))
+                    .collect(Collectors.toList());
+
+            if (calificacionesFiltradas.isEmpty()) {
+                return new ArrayList<>(); // Retorna una nueva lista vacía
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return calificacionesFiltradas;
     }
 
-    public List<Calificacion> filtrarCalifAlumno(String carnet) {
-        return listCalif.stream()
-                .filter(calif -> calif.getGrupoAlumno().getAlumnoDefinido().getCarnet().equals(carnet))
-                .collect(Collectors.toList());
+    public List<Calificacion> filtrarCalifAlumno(String carnet) throws Exception {
+        List<Calificacion> calificacionesFiltradas = new ArrayList<>();
+        try {
+            calificacionesFiltradas = listCalif.stream()
+                    .filter(calif -> calif.getGrupoAlumno().getAlumnoDefinido().getCarnet().equals(carnet))
+                    .collect(Collectors.toList());
+
+            if (calificacionesFiltradas.isEmpty()) {
+                return new ArrayList<>(); // Retorna una nueva lista vacía
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return calificacionesFiltradas;
     }
 
-    public List<Calificacion> filtrarCalifAlumnoGrupo(String carnet, String grupo) {
-        return listCalif.stream()
-                .filter(calif -> calif.getGrupoAlumno().getGrupoPertenece().getNombreGrupo().equals(grupo)
-                && calif.getGrupoAlumno().getAlumnoDefinido().getCarnet().equals(carnet))
-                .collect(Collectors.toList());
+    public List<Calificacion> filtrarCalifAlumnoGrupo(String carnet, String grupo) throws Exception {
+        List<Calificacion> calificacionesFiltradas = new ArrayList<>();
+        try {
+            calificacionesFiltradas = listCalif.stream()
+                    .filter(calif -> calif.getGrupoAlumno().getGrupoPertenece().getNombreGrupo().equals(grupo)
+                    && calif.getGrupoAlumno().getAlumnoDefinido().getCarnet().equals(carnet))
+                    .collect(Collectors.toList());
+
+            if (calificacionesFiltradas.isEmpty()) {
+                return new ArrayList<>(); // Retorna una nueva lista vacía
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return calificacionesFiltradas;
     }
 
     /**

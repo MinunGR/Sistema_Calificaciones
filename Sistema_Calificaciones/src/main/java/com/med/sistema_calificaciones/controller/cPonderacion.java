@@ -121,16 +121,26 @@ public class cPonderacion implements Serializable {
      * @return
      */
     public List<Ponderacion> filtrarPondPorMateria(String materiaBuscada) {
+        List<Ponderacion> ponderacionesFiltradas = new ArrayList<>();
+        try {
+            if (this.listPond.isEmpty()) {
+                System.out.printf("------------------------------------%n");
+                printer("• No existen ponderaciones registradas...", 0);
+                System.out.printf("------------------------------------%n");
+                return new ArrayList<>();
+            }
+            ponderacionesFiltradas = listPond.stream()
+                    .filter(ponderacion -> ponderacion.getMateriaAsignada().getCodigoMateria().equals(materiaBuscada))
+                    .collect(Collectors.toList());
 
-        if (this.listPond.isEmpty()) {
-            System.out.printf("------------------------------------%n");
-            printer("• No existen ponderaciones registradas...", 0);
-            System.out.printf("------------------------------------%n");
-            return new ArrayList<>();
+            if (ponderacionesFiltradas.isEmpty()) {
+                return new ArrayList<>();
+            }
+        } catch (Exception e) {
+            throw e;
         }
-        return listPond.stream()
-                .filter(ponderacion -> ponderacion.getMateriaAsignada().getCodigoMateria().equals(materiaBuscada))
-                .collect(Collectors.toList());
+
+        return ponderacionesFiltradas;
     }
 
     /**
