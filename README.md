@@ -1,21 +1,25 @@
-# Sistema de Calificaciones
+# Sistema de Calificaciones ![GitHub Org's stars](https://img.shields.io/github/stars/MinunGR?style=social)
 <p align="center">
   <img src="https://revistas.ues.edu.sv/public/site/images/ernestocruz/uij3.png" alt="LogoUes" width="30%" height="50%">
 </p>
 
 Durante el Ciclo I del corriente 2023 que finalizamos, en la materia de **'Manejo de Estructuras de Datos'** hemos obtenido las competencias y capacidades necesarias para poder realizar con éxito la codificación de un proyecto funcional en el lenguaje *Java*. En busca de demostrar ello, presentamos el siguiente proyecto.
 
-## Trabajo realizado:
+## :pencil2:Trabajo realizado:
 - Creamos **controles** de ingreso de datos que actúan sobre los factores en la ejecución de las calificaciones; como lo es las *materias*, *ponderaciones*, *grupo*, *alumno* y la *calificación* en sí misma.
-- Creamos **modelos** sobre los cuales se almacena información de quienes manipulan cada uno de los controles, agregando al *tutor* como uno más.
-- Creamos clases **útiles** para la *compilación* e *impresión* del proyecto.
-- Hicimos nuestra clase *principal* que ejecutará todo nuestro proyecto. Dicha clase se auxilia de la clase *redirecciones* que contiene la lógica para la resolución de consultas hechas.
+- Creamos **modelos** sobre los cuales se organiza la información manipulada desde cada uno de los controladores
+- Creamos **utilidades** para la *limpieza de consola* e *impresión en consola* en el proyecto.
+- Hicimos nuestra clase ***principal [main]*** ejecutará todo nuestro proyecto. Dicha clase se auxilia de la clase *redirecciones* que contiene la lógica para la resolución de peticiones.
 
-- ## :hammer:Funcionalidades del proyecto:
-- - `Crear materias`: descripción de la funcionalidad 1-
-  - `Funcionalidad 2`: descripción de la funcionalidad 2-
-  - `Funcionalidad 2a`: descripción de la funcionalidade 2a relacionada con la funcionalidad 2-
-  - `Funcionalidad 3`: descripción de la funcionalidad 3
+## :hammer:Funcionalidades del proyecto:
+- - `Crear materias`: Se permite al usuario registrar una asignatura.-
+  - `Crear grupos`: Se solicita la cantidad de grupos a crear para una determinada materia.-
+  - `Asignar alumnos a grupos`: Asignación de alumnos a grupos disponibles.-
+  - `Crear ponderaciones`: Se crean actividades ponderadas para una materia.-
+  - `Agregar calificaciones por grupo`: Se selecciona un código de grupo para ver los alumnos de ese grupo y colocar la calificación.-
+  - `Ver resumen de calificaciones`: Muestra el resumen de calificaciones por un grupo de una materia.-
+  - `Ver resumen de calificaciones por alumno`: Muestra el resumen de calificaciones de todas las materias para un alumno.-
+  - `Salir`: Finaliza la ejecución del programa.-
 
 
 ## Tecnología utilizada:
