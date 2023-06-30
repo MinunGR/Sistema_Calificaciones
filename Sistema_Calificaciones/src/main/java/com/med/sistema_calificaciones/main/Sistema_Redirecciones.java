@@ -534,7 +534,7 @@ public class Sistema_Redirecciones {
                                 );
                             }
                             System.out.printf("------------------------------------------------%n");
-                            // Función para inhabilitar una materia.
+                            // Función para inhabilitar una calificación.
                             ccalif.inhabilitarCalificacion();
                             break;
                         case ('3'): // Ver resumen de calificaciones
