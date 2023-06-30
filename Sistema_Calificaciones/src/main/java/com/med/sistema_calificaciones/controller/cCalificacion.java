@@ -249,13 +249,13 @@ public class cCalificacion implements Serializable {
 
             if (listCalif.contains(this.calif)) {
                 this.listCalif.removeIf(calif -> calif.getIdentificador().equals(this.calif.getIdentificador()));
-                System.out.printf("----------------------------------------------------------");
+                System.out.printf("----------------------------------------------------------%n");
                 printer("• Calificación eliminada correctamente");
-                System.out.printf("----------------------------------------------------------");
+                System.out.printf("----------------------------------------------------------%n");
             } else {
-                System.out.printf("----------------------------------------------------------");
+                System.out.printf("----------------------------------------------------------%n");
                 printer("• La calificación no existe en la lista");
-                System.out.printf("----------------------------------------------------------");
+                System.out.printf("----------------------------------------------------------%n");
             }
             this.init();
         } catch (Exception e) {
