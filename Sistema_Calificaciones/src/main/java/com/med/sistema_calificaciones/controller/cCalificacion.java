@@ -9,7 +9,6 @@ import com.med.sistema_calificaciones.model.Alumno;
 import com.med.sistema_calificaciones.model.Calificacion;
 import com.med.sistema_calificaciones.model.Grupo;
 import com.med.sistema_calificaciones.model.GrupoAlumno;
-import com.med.sistema_calificaciones.model.Materia;
 import com.med.sistema_calificaciones.model.Ponderacion;
 import static com.med.sistema_calificaciones.utils.Impresion.printer;
 import java.io.Serializable;
@@ -122,6 +121,7 @@ public class cCalificacion implements Serializable {
             //Pasamos a entidad principal
             this.calif.setGrupoAlumno(grupoAlumno);
             this.calif.setPonderacion(pond);
+            this.calif.setIdentificador(obtenerNumeroMayor());
             // La añadimos a la lista de calificaciones
             this.listCalif.add(calif);
 
@@ -247,16 +247,21 @@ public class cCalificacion implements Serializable {
             printer("Ingrese un identificador de Calificación: .");
             this.calif.setIdentificador(scn.nextInt());
 
-            if (listCalif.contains(this.calif)) {
-                this.listCalif.removeIf(calif -> calif.getIdentificador().equals(this.calif.getIdentificador()));
-                System.out.printf("----------------------------------------------------------%n");
-                printer("• Calificación eliminada correctamente");
-                System.out.printf("----------------------------------------------------------%n");
-            } else {
-                System.out.printf("----------------------------------------------------------%n");
-                printer("• La calificación no existe en la lista");
-                System.out.printf("----------------------------------------------------------%n");
+            if (this.calif != null) {
+                for (Calificacion calf : listCalif) {
+                    if (calf.getIdentificador().equals(this.calif.getIdentificador())) {
+                        this.listCalif.remove(calf);
+                        System.out.printf("---------------------------------------------------%n");
+                        printer("• Calificación eliminada correctamente");
+                        System.out.printf("---------------------------------------------------%n");
+                        this.init();
+                        return;
+                    }
+                }
             }
+            System.out.printf("---------------------------------------------------%n");
+            printer("No existe calificación con el ID recibido.", 0);
+            System.out.printf("---------------------------------------------------%n");
             this.init();
         } catch (Exception e) {
             throw e;

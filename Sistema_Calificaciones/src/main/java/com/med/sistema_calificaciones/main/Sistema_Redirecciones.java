@@ -519,6 +519,21 @@ public class Sistema_Redirecciones {
                             }
                             break;
                         case ('2'):
+                            System.out.printf("------------------------------------------------%n");
+                            System.out.printf("             Listado de Calificaciones          %n");
+                            System.out.printf("------------------------------------------------%n");
+                            System.out.printf("| %-5s | %-10s | %-15s | %-10s | %-5s |%n", "#", "CARNET", "NOMBRE", "CONCEPTO", "CALIFICACIÓN");
+                            System.out.printf("------------------------------------------------%n");
+                            for (int i = 0; i < ccalif.getListCalif().size(); i++) {
+                                System.out.printf("| %-5s| %-10s | %-15s | %-10s | %-5s |%n",
+                                        ccalif.getListCalif().get(i).getIdentificador(),
+                                        ccalif.getListCalif().get(i).getGrupoAlumno().getAlumnoDefinido().getCarnet(),
+                                        ccalif.getListCalif().get(i).getGrupoAlumno().getAlumnoDefinido().getNombreCompleto(),
+                                        (ccalif.getListCalif().get(i).getPonderacion().getPorcentaje() + "% -" + ccalif.getListCalif().get(i).getPonderacion().getDescripcion()),
+                                        ccalif.getListCalif().get(i).getCalificacion()
+                                );
+                            }
+                            System.out.printf("------------------------------------------------%n");
                             // Función para inhabilitar una materia.
                             ccalif.inhabilitarCalificacion();
                             break;
@@ -546,10 +561,11 @@ public class Sistema_Redirecciones {
                                     System.out.printf("------------------------------------------------%n");
                                     System.out.printf("             Listado de Calificaciones          %n");
                                     System.out.printf("------------------------------------------------%n");
-                                    System.out.printf("| %-10s | %-15s | %-10s | %-5s |%n", "CARNET", "NOMBRE", "CONCEPTO", "CALIFICACIÓN");
+                                    System.out.printf("| %-5s | %-10s | %-15s | %-10s | %-5s |%n", "#", "CARNET", "NOMBRE", "CONCEPTO", "CALIFICACIÓN");
                                     System.out.printf("------------------------------------------------%n");
                                     for (int i = 0; i < listCalifFilter.size(); i++) {
-                                        System.out.printf("| %-10s | %-15s | %-10s | %-5s |%n",
+                                        System.out.printf("| %-5s | %-10s | %-15s | %-10s | %-5s |%n",
+                                                listCalifFilter.get(i).getIdentificador(),
                                                 listCalifFilter.get(i).getGrupoAlumno().getAlumnoDefinido().getCarnet(),
                                                 listCalifFilter.get(i).getGrupoAlumno().getAlumnoDefinido().getNombreCompleto(),
                                                 (listCalifFilter.get(i).getPonderacion().getPorcentaje() + "% -" + listCalifFilter.get(i).getPonderacion().getDescripcion()),
@@ -604,10 +620,11 @@ public class Sistema_Redirecciones {
                                     System.out.printf("------------------------------------------------%n");
                                     System.out.printf("             Listado de Calificaciones          %n");
                                     System.out.printf("------------------------------------------------%n");
-                                    System.out.printf("| %-10s | %-15s | %-10s | %-5s |%n", "CARNET", "NOMBRE", "CONCEPTO", "CALIFICACIÓN");
+                                    System.out.printf("| %-5s | %-10s | %-15s | %-10s | %-5s |%n", "#", "CARNET", "NOMBRE", "CONCEPTO", "CALIFICACIÓN");
                                     System.out.printf("------------------------------------------------%n");
                                     for (int j = 0; j < listCalifGrAlFilter.size(); j++) {
-                                        System.out.printf("| %-10s | %-15s | %-10s | %-5s |%n",
+                                        System.out.printf("| %-5s | %-10s | %-15s | %-10s | %-5s |%n",
+                                                listCalifGrAlFilter.get(i).getIdentificador(),
                                                 listCalifGrAlFilter.get(j).getGrupoAlumno().getAlumnoDefinido().getCarnet(),
                                                 listCalifGrAlFilter.get(j).getGrupoAlumno().getAlumnoDefinido().getNombreCompleto(),
                                                 (listCalifGrAlFilter.get(j).getPonderacion().getPorcentaje() + "% -" + listCalifGrAlFilter.get(j).getPonderacion().getDescripcion()),
