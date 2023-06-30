@@ -143,28 +143,6 @@ public class cCalificacion implements Serializable {
     }
 
     /**
-     * Función para buscar una calificación de la lista en base a un
-     * identificaor de ponderacion
-     *
-     * @param idPonderacion
-     * @return
-     * @throws java.lang.Exception
-     */
-    public Calificacion buscarCalifPorPonderacion(String idPonderacion) throws Exception {
-        try {
-            for (Calificacion cal : listCalif) {
-//                if (cal.getPonderacion().getIdentificador().equals(idPonderacion)) {
-//                    return cal;
-//                }
-            }
-            this.init();
-        } catch (Exception e) {
-            throw e;
-        }
-        return null; // Si no se encuentra el grupo, se retorna null
-    }
-
-    /**
      * Función que filtra la lista por el carnet del alumno y grupo o solo
      * carnet. Es equivalente a filtrar por carnet y materia.
      *
