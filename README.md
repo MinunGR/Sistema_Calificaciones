@@ -11,6 +11,13 @@ Durante el Ciclo I del corriente 2023 que finalizamos, en la materia de **'Manej
 - Creamos clases **útiles** para la *compilación* e *impresión* del proyecto.
 - Hicimos nuestra clase *principal* que ejecutará todo nuestro proyecto. Dicha clase se auxilia de la clase *redirecciones* que contiene la lógica para la resolución de consultas hechas.
 
+- ## :hammer:Funcionalidades del proyecto:
+- - `Crear materias`: descripción de la funcionalidad 1-
+  - `Funcionalidad 2`: descripción de la funcionalidad 2-
+  - `Funcionalidad 2a`: descripción de la funcionalidade 2a relacionada con la funcionalidad 2-
+  - `Funcionalidad 3`: descripción de la funcionalidad 3
+
+
 ## Tecnología utilizada:
 - Java Jdk 17
 
@@ -31,5 +38,5 @@ Debido a la naturaleza didáctica de este proyecto, se entregará por los implic
   **MA22054**
 
   
-| [<img src="https://avatars.githubusercontent.com/u/61745150?v=4" width=115><br><sub>Fernando José Barraza Álvarez</sub>](https://github.com/MinunGR) S| [<img src="https://avatars.githubusercontent.com/u/134123481?v=4" width=115><br><sub>Victor Jose Morales Anaya</sub>](https://github.com/jose-moral) | [<img src="https://avatars.githubusercontent.com/u/134826793?v=4" width=115><br><sub>Roman Edgardo Mendoza Arias</sub>](https://github.com/remaGOD) | [<img src="https://avatars.githubusercontent.com/u/66326960?v=4" width=115><br><sub>Gabriel Alexander Calderón Villeda  </sub>](https://github.com/ga-b0)
+| [<img src="https://avatars.githubusercontent.com/u/61745150?v=4" width=115><br><sub>Fernando José Barraza Álvarez</sub>](https://github.com/MinunGR) | [<img src="https://avatars.githubusercontent.com/u/134123481?v=4" width=115><br><sub>Victor Jose Morales Anaya</sub>](https://github.com/jose-moral) | [<img src="https://avatars.githubusercontent.com/u/134826793?v=4" width=115><br><sub>Roman Edgardo Mendoza Arias</sub>](https://github.com/remaGOD) | [<img src="https://avatars.githubusercontent.com/u/66326960?v=4" width=115><br><sub>Gabriel Alexander Calderón Villeda  </sub>](https://github.com/ga-b0)
 | :---: | :---: | :---: | :---: |
