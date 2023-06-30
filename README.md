@@ -29,7 +29,8 @@ Debido a la naturaleza didáctica de este proyecto, se entregará por los implic
   **MA12106**
 - Roman Edgardo Mendoza Arias  
   **MA22054**
-  ## Autores
-
-| [<img src="https://avatars.githubusercontent.com/u/37356058?v=4" width=115><br><sub>Camila Fernanda Alves</sub>](https://github.com/camilafernanda) |  [<img src="https://avatars.githubusercontent.com/u/71970858?v=4" width=115><br><sub>Ellen Pimentel</sub>]([https://github.com/guilhermeonrails](https://github.com/ellenpimentel)) |  [<img src="https://avatars.githubusercontent.com/u/91544872?v=4" width=115><br><sub>Génesys Rondón</sub>](https://github.com/genesysaluralatam) |
-| :---: | :---: | :---: |
+| [<img src="https://avatars.githubusercontent.com/u/61745150?v=4" width=115><br><sub>Fernando José Barraza Álvarez</sub>](https://github.com/MinunGR) 
+| [<img src="https://avatars.githubusercontent.com/u/66326960?v=4" width=115><br><sub>Gabriel Alexander Calderón Villeda  </sub>]([https://github.com/ga-b0](https://github.com/ellenpimentel)) 
+| [<img src="https://avatars.githubusercontent.com/u/134123481?v=4" width=115><br><sub>Victor Jose Morales Anaya</sub>](https://github.com/jose-moral) 
+| [<img src="https://avatars.githubusercontent.com/u/134826793?v=4" width=115><br><sub>Roman Edgardo Mendoza Arias</sub>](https://github.com/remaGOD)
+| :---: | :---: | :---: | :---: |
