@@ -22,7 +22,7 @@ Durante el Ciclo I del corriente 2023 que finalizamos, en la materia de **'Manej
   - `Salir`: Finaliza la ejecución del programa.-
 
 
-## :check:Tecnología utilizada:
+## :heavy_check_mark:Tecnología utilizada:
 - Java Jdk 17
 
 ## :computer:Entorno de Desarrollo utilizado:
