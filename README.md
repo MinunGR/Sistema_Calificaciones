@@ -29,6 +29,8 @@ Debido a la naturaleza didáctica de este proyecto, se entregará por los implic
   **MA12106**
 - Roman Edgardo Mendoza Arias  
   **MA22054**
+
+  
 | [<img src="https://avatars.githubusercontent.com/u/61745150?v=4" width=115><br><sub>Fernando José Barraza Álvarez</sub>](https://github.com/MinunGR) 
 | [<img src="https://avatars.githubusercontent.com/u/66326960?v=4" width=115><br><sub>Gabriel Alexander Calderón Villeda  </sub>]([https://github.com/ga-b0](https://github.com/ellenpimentel)) 
 | [<img src="https://avatars.githubusercontent.com/u/134123481?v=4" width=115><br><sub>Victor Jose Morales Anaya</sub>](https://github.com/jose-moral) 
